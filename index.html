@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NicheVault — Discover Markets Nobody Knows Exist</title>
+  <meta name="description" content="NicheVault identifies untapped market gaps with zero competition using unconventional data research. Get actionable go-to-market blueprints for founders.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpolygon points='16,8 26,18 16,28 6,18' fill='%236366f1'/%3E%3C/svg%3E">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'SF Pro Display', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      background: rgba(15,23,42,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(99,102,241,0.1);
+      padding: 0 24px; height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 20px; color: #e2e8f0; }
+    .nav-logo .gem {
+      width: 28px; height: 28px;
+      background: linear-gradient(135deg, #6366f1, #06b6d4);
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { font-size: 14px; font-weight: 500; color: #94a3b8; transition: color 0.2s; }
+    .nav-links a:hover { color: #e2e8f0; }
+    .see-more-wrap { text-align: center; margin-top: 32px; }
+    .see-more-link { display: inline-flex; align-items: center; gap: 6px; padding: 12px 28px; background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2); border-radius: 10px; color: #a5b4fc; font-weight: 600; font-size: 15px; transition: all 0.2s; }
+    .see-more-link:hover { background: rgba(99,102,241,0.2); border-color: rgba(99,102,241,0.4); }
+    .nav-cta {
+      background: linear-gradient(135deg, #6366f1, #06b6d4);
+      color: white !important; padding: 8px 20px; border-radius: 8px;
+      font-weight: 600 !important; font-size: 14px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(99,102,241,0.4); }
+    .mobile-toggle { display: none; background: none; border: none; color: #e2e8f0; font-size: 24px; cursor: pointer; }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .mobile-toggle { display: block; }
+      .mobile-open .nav-links {
+        display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0;
+        background: rgba(15,23,42,0.98); backdrop-filter: blur(12px);
+        padding: 20px 24px; border-bottom: 1px solid rgba(99,102,241,0.15); gap: 16px; align-items: flex-start;
+      }
+    }
+
+    .hero {
+      min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; padding: 120px 24px 80px; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -40%; left: -20%; width: 140%; height: 140%;
+      background: radial-gradient(ellipse at center, rgba(99,102,241,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.2);
+      padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 500; color: #a5b4fc; margin-bottom: 28px;
+    }
+    .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: #10b981; display: inline-block; animation: pulse-dot 2s infinite; }
+    @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .hero h1 { font-size: clamp(40px, 8vw, 72px); font-weight: 800; line-height: 1.1; letter-spacing: -1.5px; max-width: 800px; margin-bottom: 20px; }
+    .hero h1 .grad { background: linear-gradient(135deg, #818cf8, #22d3ee, #34d399); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero p { font-size: clamp(18px, 2.5vw, 22px); color: #94a3b8; max-width: 640px; margin-bottom: 40px; line-height: 1.7; }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, #6366f1, #06b6d4); color: white; padding: 14px 32px; border-radius: 10px;
+      font-weight: 700; font-size: 16px; border: none; cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(99,102,241,0.45); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      color: #e2e8f0; padding: 14px 32px; border-radius: 10px; font-weight: 600; font-size: 16px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
+
+    .hero-stats { display: flex; gap: 40px; margin-top: 60px; flex-wrap: wrap; justify-content: center; }
+    .hero-stat { text-align: center; }
+    .hero-stat .num { font-size: 28px; font-weight: 800; background: linear-gradient(135deg, #818cf8, #22d3ee); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-stat .label { font-size: 13px; color: #64748b; margin-top: 2px; }
+
+    section { padding: 100px 24px; }
+    .section-container { max-width: 1100px; margin: 0 auto; }
+    .section-label { display: inline-block; font-size: 13px; font-weight: 600; color: #818cf8; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
+    .section-title { font-size: clamp(28px, 4vw, 40px); font-weight: 800; line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 16px; }
+    .section-desc { font-size: 18px; color: #94a3b8; max-width: 640px; margin-bottom: 48px; }
+
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+    .step-card {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px; padding: 32px 24px; transition: border-color 0.3s, transform 0.3s; position: relative;
+    }
+    .step-card:hover { border-color: rgba(99,102,241,0.3); transform: translateY(-4px); }
+    .step-num { font-size: 48px; font-weight: 800; background: linear-gradient(135deg, rgba(99,102,241,0.3), rgba(6,182,212,0.3)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 16px; }
+    .step-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .step-card p { font-size: 14px; color: #94a3b8; line-height: 1.7; }
+
+    .niche-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .niche-card {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px; padding: 28px 24px; transition: border-color 0.3s, transform 0.3s;
+    }
+    .niche-card:hover { border-color: rgba(99,102,241,0.3); transform: translateY(-3px); }
+    .niche-card .tag { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; padding: 3px 10px; border-radius: 6px; margin-bottom: 12px; }
+    .tag-zero { background: rgba(16,185,129,0.15); color: #34d399; }
+    .tag-potential { background: rgba(99,102,241,0.15); color: #a5b4fc; }
+    .tag-low { background: rgba(250,204,21,0.15); color: #facc15; }
+    .niche-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+    .niche-card p { font-size: 14px; color: #94a3b8; margin-bottom: 14px; line-height: 1.6; }
+    .niche-metrics { display: flex; gap: 16px; font-size: 13px; color: #64748b; flex-wrap: wrap; }
+    .niche-metrics span strong { color: #e2e8f0; }
+    .niche-card .sample-link { display: inline-block; margin-top: 16px; font-size: 14px; font-weight: 600; color: #818cf8; }
+    .niche-card .sample-link:hover { color: #a5b4fc; }
+
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; align-items: start; }
+    .pricing-card {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px; padding: 32px 24px; transition: border-color 0.3s, transform 0.3s; position: relative;
+    }
+    .pricing-card.featured {
+      border-color: rgba(99,102,241,0.4); background: rgba(99,102,241,0.06); transform: scale(1.03);
+    }
+    .pricing-card.featured .pop {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: linear-gradient(135deg, #6366f1, #06b6d4); color: white;
+      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+      padding: 4px 16px; border-radius: 20px;
+    }
+    .pricing-card .plan { font-size: 14px; font-weight: 600; color: #94a3b8; margin-bottom: 8px; }
+    .pricing-card .price { font-size: 40px; font-weight: 800; letter-spacing: -1px; margin-bottom: 4px; }
+    .pricing-card .price span { font-size: 16px; font-weight: 500; color: #64748b; }
+    .pricing-card .period { font-size: 14px; color: #64748b; margin-bottom: 20px; }
+    .pricing-card ul { list-style: none; padding: 0; margin-bottom: 24px; }
+    .pricing-card ul li { padding: 6px 0; font-size: 14px; color: #94a3b8; display: flex; align-items: flex-start; gap: 8px; }
+    .pricing-card ul li::before { content: '✓'; color: #34d399; font-weight: 700; }
+    .pricing-card .btn-pricing {
+      display: block; text-align: center; padding: 12px; border-radius: 8px;
+      font-weight: 600; font-size: 15px; transition: background 0.2s, transform 0.2s;
+      border: 1px solid rgba(255,255,255,0.1); color: #e2e8f0;
+    }
+    .pricing-card .btn-pricing:hover { background: rgba(255,255,255,0.08); transform: translateY(-1px); }
+    .pricing-card.featured .btn-pricing { background: linear-gradient(135deg, #6366f1, #06b6d4); border: none; color: white; }
+    .pricing-card.featured .btn-pricing:hover { box-shadow: 0 4px 20px rgba(99,102,241,0.4); }
+
+    .cta-section {
+      background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(6,182,212,0.05));
+      border-top: 1px solid rgba(99,102,241,0.1);
+      border-bottom: 1px solid rgba(99,102,241,0.1);
+    }
+    .cta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    @media (max-width: 768px) {
+      .cta-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+    .cta-left h2 { font-size: clamp(28px, 3.5vw, 38px); font-weight: 800; line-height: 1.2; margin-bottom: 16px; }
+    .cta-left p { font-size: 16px; color: #94a3b8; line-height: 1.7; }
+    .cta-benefits { margin-top: 20px; list-style: none; padding: 0; }
+    .cta-benefits li { padding: 8px 0; font-size: 15px; color: #cbd5e1; display: flex; align-items: center; gap: 10px; }
+    .cta-benefits li::before { content: '✦'; color: #22d3ee; font-size: 14px; }
+
+    .form-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 36px 32px;
+    }
+    .form-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+    .form-card .form-sub { font-size: 14px; color: #64748b; margin-bottom: 24px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 600; color: #94a3b8; margin-bottom: 6px; }
+    .form-group input {
+      width: 100%; padding: 12px 16px; border-radius: 10px;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      color: #e2e8f0; font-size: 15px; font-family: inherit;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus { outline: none; border-color: #6366f1; }
+    .form-group input::placeholder { color: #475569; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
+    .form-submit {
+      width: 100%; padding: 14px; margin-top: 8px;
+      background: linear-gradient(135deg, #6366f1, #06b6d4);
+      border: none; border-radius: 10px; color: white;
+      font-size: 16px; font-weight: 700; cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .form-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(99,102,241,0.4); }
+    .form-note { font-size: 12px; color: #475569; text-align: center; margin-top: 12px; }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .testimonial-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 28px 24px;
+    }
+    .testimonial-card .stars { color: #facc15; font-size: 16px; margin-bottom: 12px; }
+    .testimonial-card blockquote { font-size: 15px; color: #94a3b8; line-height: 1.7; font-style: italic; margin-bottom: 16px; }
+    .testimonial-card .author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-card .author-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, #6366f1, #06b6d4);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 16px; color: white;
+    }
+    .testimonial-card .author-info .name { font-size: 14px; font-weight: 600; }
+    .testimonial-card .author-info .role { font-size: 12px; color: #64748b; }
+
+    .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 32px; }
+    .process-item {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 24px 20px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .process-item .icon {
+      width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .process-item .content h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .process-item .content p { font-size: 13px; color: #64748b; line-height: 1.6; }
+
+    footer {
+      padding: 60px 24px 40px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+    .footer-brand .logo-wrap { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 18px; margin-bottom: 12px; }
+    .footer-brand .logo-wrap .gem { width: 22px; height: 22px; background: linear-gradient(135deg, #6366f1, #06b6d4); clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
+    .footer-brand p { font-size: 14px; color: #64748b; max-width: 280px; line-height: 1.7; }
+    .footer-col h4 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #64748b; margin-bottom: 16px; }
+    .footer-col a { display: block; font-size: 14px; color: #94a3b8; padding: 4px 0; transition: color 0.2s; }
+    .footer-col a:hover { color: #e2e8f0; }
+    .footer-bottom { max-width: 1100px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; font-size: 13px; color: #475569; }
+
+    .toast {
+      position: fixed; bottom: 24px; right: 24px;
+      background: rgba(16,185,129,0.95); backdrop-filter: blur(8px);
+      color: white; padding: 16px 24px; border-radius: 12px;
+      font-weight: 600; font-size: 14px; z-index: 100;
+      transform: translateY(100px); opacity: 0;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    @media (max-width: 768px) {
+      .pricing-card.featured { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      <div class="gem"></div>
+      NicheVault
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#how">How It Works</a>
+      <a href="niche-library.html">Niche Library</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#waitlist" class="nav-cta">Join Waitlist</a>
+    </div>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">☰</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      Identifying untapped markets — zero competition
+    </div>
+    <h1>
+      Discover Markets<br>
+      <span class="grad">Nobody Knows Exist</span>
+    </h1>
+    <p>
+      We find zero-competition market gaps using unconventional data research — patent filings, forum signals, regulatory loopholes, and creative synthesis. Then we give you a ready-to-execute blueprint.
+    </p>
+    <div class="hero-actions">
+      <a href="#waitlist" class="btn-primary">
+        Get Early Access →
+      </a>
+      <a href="#niches" class="btn-secondary">
+        See Sample Niches
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="num">47+</div>
+        <div class="label">Niches Identified</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">0</div>
+        <div class="label">Avg Competitors</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">&lt;2hrs</div>
+        <div class="label">Time to First Insight</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">$1.2B+</div>
+        <div class="label">Combined Market Potential</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <div class="section-container">
+      <span class="section-label">How It Works</span>
+      <h2 class="section-title">From Data to Dollars in 4 Steps</h2>
+      <p class="section-desc">We don't guess. We mine unconventional data sources, connect the dots, and deliver battle-tested launch plans for markets nobody is serving.</p>
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <h3>Data Mining</h3>
+          <p>We scan patent databases, obscure subreddits, regulatory filings, hobbyist forums, and job boards for signals that something is growing — but nobody is building for it.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <h3>Creative Synthesis</h3>
+          <p>We connect unrelated dots. A haptic feedback patent + remote guitar lesson forum + music education grant = your next business idea.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <h3>Validation</h3>
+          <p>We verify demand with Google Trends, Keyword Golden Ratio, TAM estimation, and competitive landscape analysis. If there's competition, we move on.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">04</div>
+          <h3>Blueprint Delivery</h3>
+          <p>You get an actionable report: market overview, target audience, monetization model, distribution channels, SEO strategy, and a launch timeline.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NICHE SHOWCASE -->
+  <section id="niches">
+    <div class="section-container">
+      <span class="section-label">Niche Showcase</span>
+      <h2 class="section-title">Real Niches With Zero Competition</h2>
+      <p class="section-desc">These are actual market gaps we've identified. Each one has no dedicated competitors, growing demand, and a clear path to monetization.</p>
+      <div class="niche-grid">
+        <div class="niche-card">
+          <span class="tag tag-zero">Zero Competition</span>
+          <h3>AI Pet Bereavement Journaling</h3>
+          <p>A dedicated journaling app for processing pet loss — with AI-guided prompts, memory timelines, and optional community support. No existing app serves this specific need.</p>
+          <div class="niche-metrics">
+            <span><strong>+340%</strong> search growth</span>
+            <span><strong>78M</strong> pet households</span>
+          </div>
+          <a href="sample-report.html" class="sample-link">View Sample Report →</a>
+        </div>
+        <div class="niche-card">
+          <span class="tag tag-zero">Zero Competition</span>
+          <h3>Compliance-as-a-Service for Indie Game Devs</h3>
+          <p>EU digital regulations (DMA, GDPR, DSA) are crushing solo game developers. No service exists to handle compliance for indie studios at an affordable price point.</p>
+          <div class="niche-metrics">
+            <span><strong>58K+</strong> indie devs affected</span>
+            <span><strong>$0</strong> dedicated services</span>
+          </div>
+        </div>
+        <div class="niche-card">
+          <span class="tag tag-potential">High Potential</span>
+          <h3>Haptic Feedback Music Learning Tools</h3>
+          <p>Patents in haptic feedback for instrument learning are exploding — but no commercial product exists. A vibration-enabled glove that teaches finger placement for guitar/piano.</p>
+          <div class="niche-metrics">
+            <span><strong>340+</strong> related patents</span>
+            <span><strong>$890M</strong> music learning market</span>
+          </div>
+        </div>
+        <div class="niche-card">
+          <span class="tag tag-zero">Zero Competition</span>
+          <h3>B2B Sustainability Documentation for SMEs</h3>
+          <p>EU supply chain regulations now require SMEs to document emissions. Existing solutions cost $10K+/year. No affordable tool exists for small businesses.</p>
+          <div class="niche-metrics">
+            <span><strong>4.2M</strong> affected SMEs in EU</span>
+            <span><strong>$200+/mo</strong> price gap</span>
+          </div>
+        </div>
+        <div class="niche-card">
+          <span class="tag tag-low">Low Competition</span>
+          <h3>Digital Nomad Insurance Comparison</h3>
+          <p>40M+ digital nomads globally — zero dedicated comparison platforms for nomad-specific insurance. General comparison sites don't cover nomad needs (multi-country, remote work gear, etc.).</p>
+          <div class="niche-metrics">
+            <span><strong>40M+</strong> potential users</span>
+            <span><strong>$0</strong> dedicated comparators</span>
+          </div>
+        </div>
+        <div class="niche-card">
+          <span class="tag tag-zero">Zero Competition</span>
+          <h3>AI-Powered Resume Rebranding for Career Breaks</h3>
+          <p>Millions return to work after career breaks (parenting, caregiving, health). No tool exists to reframe gaps positively using AI — currently a manual, awkward process.</p>
+          <div class="niche-metrics">
+            <span><strong>27%</strong> of workers have gaps</span>
+            <span><strong>0</strong> dedicated tools</span>
+          </div>
+        </div>
+      </div>
+      <div class="see-more-wrap">
+        <a href="niche-library.html" class="see-more-link">Browse All 8+ Niches →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR PROCESS -->
+  <section style="background: rgba(99,102,241,0.02); border-top: 1px solid rgba(99,102,241,0.06); border-bottom: 1px solid rgba(99,102,241,0.06);">
+    <div class="section-container">
+      <span class="section-label">Our Research Process</span>
+      <h2 class="section-title">Unconventional Sources,<br>Unfair Advantages</h2>
+      <p class="section-desc">While others fight over saturated keywords, we mine data from places most researchers never look.</p>
+      <div class="process-steps">
+        <div class="process-item">
+          <div class="icon" style="background:rgba(99,102,241,0.15);color:#a5b4fc;">📜</div>
+          <div class="content">
+            <h4>Patent Databases</h4>
+            <p>We track patent filings in emerging tech spaces — haptics, AR/VR, biotech — months before they hit consumer markets.</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="icon" style="background:rgba(6,182,212,0.15);color:#22d3ee;">💬</div>
+          <div class="content">
+            <h4>Hobbyist Communities</h4>
+            <p>Reddit, Discord, niche forums reveal underserved passion communities with unsolved problems nobody is building for.</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="icon" style="background:rgba(16,185,129,0.15);color:#34d399;">⚖️</div>
+          <div class="content">
+            <h4>Regulatory Loopholes</h4>
+            <p>New regulations create instant demand for compliance solutions. We spot these gaps the day regulations drop.</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="icon" style="background:rgba(250,204,21,0.15);color:#facc15;">📊</div>
+          <div class="content">
+            <h4>Job Posting Anomalies</h4>
+            <p>Unusual job postings signal new market creation. When companies start hiring for roles that didn't exist, a gap is forming.</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="icon" style="background:rgba(236,72,153,0.15);color:#f472b6;">🔍</div>
+          <div class="content">
+            <h4>Amazon & App Store Gaps</h4>
+            <p>Categories with low ratings across the board indicate demand that existing products fail to satisfy.</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="icon" style="background:rgba(168,85,247,0.15);color:#c084fc;">🌐</div>
+          <div class="content">
+            <h4>Government Datasets</h4>
+            <p>Public data from the Census Bureau, Bureau of Labor Statistics, and international trade databases reveal demographic shifts before they're obvious.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="section-container">
+      <span class="section-label">Pricing</span>
+      <h2 class="section-title">Choose Your Access Level</h2>
+      <p class="section-desc">From free monthly alerts to done-for-you strategy blueprints — pick the tier that fits your launch phase.</p>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="plan">Starter</div>
+          <div class="price">$0<span>/mo</span></div>
+          <div class="period">Free forever</div>
+          <ul>
+            <li>Monthly niche alert (1 brief)</li>
+            <li>Public sample reports</li>
+            <li>Access to blog & insights</li>
+            <li>Email newsletter</li>
+          </ul>
+          <a href="#waitlist" class="btn-pricing">Join Free</a>
+        </div>
+        <div class="pricing-card featured">
+          <div class="pop">Most Popular</div>
+          <div class="plan">Premium</div>
+          <div class="price">$29<span>/mo</span></div>
+          <div class="period">Cancel anytime</div>
+          <ul>
+            <li>4+ niche briefs per month</li>
+            <li>2 full deep-dive reports included</li>
+            <li>20% off additional reports</li>
+            <li>First-look access to new niches</li>
+            <li>Curated GTM snippets</li>
+          </ul>
+          <a href="#waitlist" class="btn-pricing">Subscribe →</a>
+        </div>
+        <div class="pricing-card">
+          <div class="plan">Report</div>
+          <div class="price">$49<span>–$199</span></div>
+          <div class="period">Per report</div>
+          <ul>
+            <li>10-20 page deep-dive analysis</li>
+            <li>Competitive landscape / gap analysis</li>
+            <li>Go-to-market roadmap</li>
+            <li>Monetization strategy</li>
+            <li>SEO keyword opportunities</li>
+          </ul>
+          <a href="#waitlist" class="btn-pricing">Buy Report →</a>
+        </div>
+      </div>
+      <div style="margin-top: 16px; text-align: center;">
+        <p style="font-size: 14px; color: #64748b;">Need a custom strategy? <a href="#waitlist" style="color:#818cf8;font-weight:600;">Done-for-You Blueprints</a> start at $499.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section style="background: rgba(255,255,255,0.02);">
+    <div class="section-container">
+      <span class="section-label">Early Adopters</span>
+      <h2 class="section-title">Trusted by Founders Who Move Fast</h2>
+      <p class="section-desc">What early-access users are saying about NicheVault's research.</p>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"I've spent months searching for a niche to start my SaaS. One NicheVault report gave me more clarity than 3 months of my own research. The pet bereavement angle blew my mind."</blockquote>
+          <div class="author">
+            <div class="author-avatar">JM</div>
+            <div class="author-info">
+              <div class="name">James M.</div>
+              <div class="role">Indie Founder</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"The compliance-as-a-service niche for indie devs is brilliant. I launched my MVP in 6 weeks based on their blueprint. Zero competitors, paying customers from day one."</blockquote>
+          <div class="author">
+            <div class="author-avatar">SK</div>
+            <div class="author-info">
+              <div class="name">Sarah K.</div>
+              <div class="role">Solo Developer</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"What sets NicheVault apart is how they find gaps nobody else sees. I've read dozens of market research reports — none of them identified the digital nomad insurance angle. Incredible work."</blockquote>
+          <div class="author">
+            <div class="author-avatar">AR</div>
+            <div class="author-info">
+              <div class="name">Alex R.</div>
+              <div class="role">Startup Advisor</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / WAITLIST -->
+  <section id="waitlist" class="cta-section">
+    <div class="section-container">
+      <div class="cta-grid">
+        <div class="cta-left">
+          <span class="section-label">Get Early Access</span>
+          <h2>Stop Competing in Crowded Spaces</h2>
+          <p>Join the waitlist and be first in line when we launch. Early subscribers get <strong>25% off their first report</strong> and exclusive access to our niche archive.</p>
+          <ul class="cta-benefits">
+            <li>Free sample niche insight immediately</li>
+            <li>Early access to first 10 reports</li>
+            <li>25% discount on your first purchase</li>
+            <li>Monthly niche alerts (free tier included)</li>
+          </ul>
+        </div>
+        <div>
+          <div class="form-card">
+            <h3>Join the Vault</h3>
+            <p class="form-sub">Get your free niche sample and early access pricing.</p>
+            <form id="waitlistForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="firstName">First name</label>
+                  <input type="text" id="firstName" placeholder="Jane" required>
+                </div>
+                <div class="form-group">
+                  <label for="lastName">Last name</label>
+                  <input type="text" id="lastName" placeholder="Doe" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" id="email" placeholder="jane@example.com" required>
+              </div>
+              <div class="form-group">
+                <label for="interest">I'm interested in...</label>
+                <input type="text" id="interest" placeholder="e.g., AI tools, pet industry, SaaS">
+              </div>
+              <button type="submit" class="form-submit">Get Early Access →</button>
+            </form>
+            <p class="form-note">No spam. Unsubscribe anytime. Your niche sample arrives immediately.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-wrap">
+          <div class="gem"></div>
+          NicheVault
+        </div>
+        <p>Identifying untapped market gaps with zero competition. We help founders build where nobody else is looking.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="niche-library.html">Niche Library</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#waitlist">Waitlist</a>
+        <a href="sample-report.html">Sample Report</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About</a>
+        <a href="#">Blog</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+      <div class="footer-col">
+        <h4>Follow</h4>
+        <a href="#">Twitter / X</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">Substack</a>
+        <a href="#">YouTube</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 NicheVault. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">✓ You're on the list! Check your inbox for your free niche sample.</div>
+
+  <!-- JS -->
+  <script>
+    const mobileToggle = document.getElementById('mobileToggle');
+    mobileToggle.addEventListener('click', () => {
+      document.body.classList.toggle('mobile-open');
+      mobileToggle.textContent = document.body.classList.contains('mobile-open') ? '✕' : '☰';
+    });
+
+    const navLinks = document.getElementById('navLinks');
+    navLinks.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') {
+        document.body.classList.remove('mobile-open');
+        mobileToggle.textContent = '☰';
+      }
+    });
+
+    const form = document.getElementById('waitlistForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const firstName = document.getElementById('firstName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      if (!firstName || !email) return;
+
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 5000);
+
+      form.reset();
+    });
+
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('btn-pricing') || e.target.closest('.btn-pricing')) {
+        const href = e.target.getAttribute('href') || (e.target.closest('a') && e.target.closest('a').getAttribute('href'));
+        if (href && href.startsWith('#') && href !== '#waitlist') {
+          e.preventDefault();
+          document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

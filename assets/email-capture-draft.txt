@@ -1,0 +1,206 @@
+================================================================
+NICHEVAULT — EMAIL CAPTURE & WAITLIST FLOW
+================================================================
+
+GOAL: Convert landing page visitors into waitlist subscribers,
+then nurture them toward purchasing a report or subscription.
+
+================================================================
+FLOW OVERVIEW
+================================================================
+
+1. LANDING PAGE → "Join the Waitlist" capture form
+   (name + email only, low friction)
+
+2. CONFIRMATION → Welcome email with free sample insight
+
+3. NURTURE SEQUENCE → 4-email series (spread over 10 days)
+
+4. LAUNCH ANNOUNCEMENT → First report available for purchase
+
+5. ONGOING → Monthly niche alerts (subscribers) + paid reports
+
+================================================================
+EMAIL #1 — WELCOME + FREE SAMPLE (Immediate)
+================================================================
+
+Subject: Your NicheVault welcome gift is inside 🎁
+
+Hey {{first_name}},
+
+Welcome to NicheVault — the only research lab dedicated to
+finding market gaps with ZERO competition.
+
+Most founders fight over crowded keywords and saturated markets.
+We do the opposite. We find the spaces nobody has even noticed yet.
+
+As a welcome gift, here's a sample niche we recently identified:
+
+──────────────────────────────
+✨ SAMPLE NICHE SNEAK PEEK
+──────────────────────────────
+Niche: AI-assisted pet bereavement journaling
+Competition: ZERO (no dedicated tools exist)
+Search demand: Rising 340% YoY (Google Trends)
+Target audience: 78M pet owners in US alone
+Monetization: $12/month subscription journaling app
+──────────────────────────────
+
+This is the kind of insight our full reports deliver — except
+those go 10x deeper with go-to-market blueprints, competitor
+analysis (or lack thereof), and monetization strategies.
+
+Stay tuned — our first full report is coming soon.
+
+In the meantime, here's what to expect from us:
+- Monthly niche alerts (free tier)
+- Deep-dive reports ($49–$199)
+- Done-for-you strategy blueprints ($499–$999)
+
+See you inside the Vault,
+
+— The NicheVault Team
+
+================================================================
+EMAIL #2 — THE NICHE HUNTER MINDSET (Day 3)
+================================================================
+
+Subject: Why "zero competition" sounds scary (but isn't)
+
+Hey {{first_name}},
+
+Let's address the elephant in the room.
+
+When we say "zero competition," some founders get nervous:
+"If there's no competition, does a market even exist?"
+
+Fair question. Here's the truth:
+
+Every successful business was once the first mover in its
+micro-niche. Airbnb was "ridiculous." Tesla was "impossible."
+Peloton was "why would anyone pay for that?"
+
+The difference? They saw a gap that others missed.
+
+Our research process uses unconventional data sources:
+- Patent filings → detect emerging technologies before they hit
+- Hobbyist forums → spot underserved communities
+- Regulatory loopholes → identify compliance-as-a-service opps
+- Job posting anomalies → find unspoken hiring demand
+
+We connect dots that nobody else is connecting.
+
+Next email: How our research process actually works.
+
+— The NicheVault Team
+
+P.S. Our waitlist is growing fast. We'll open the vault doors
+soon. Watch your inbox.
+
+================================================================
+EMAIL #3 — HOW IT WORKS (Day 6)
+================================================================
+
+Subject: How we find what nobody else sees 🔍
+
+Hey {{first_name}},
+
+You might be wondering: how does NicheVault actually *find*
+these untapped market gaps?
+
+It's not AI scraping Google Keywords (everyone does that).
+It's not looking at "trending topics" (too late by then).
+
+Here's our actual process:
+
+STEP 1: DATA MINING (Unconventional Sources)
+We scan patent databases, regulatory filings, niche subreddits,
+hobbyist forums, obscure government datasets, and job boards
+for anomalous signals — things that are growing but nobody's
+building for.
+
+STEP 2: CREATIVE SYNTHESIS
+We connect seemingly unrelated signals. A patent in haptic
+feedback + a forum thread about remote guitar lessons + a
+regulatory change in music education funding = a niche.
+
+STEP 3: VALIDATION
+We verify search demand (Google Trends, Keyword Golden Ratio),
+check existing solutions (there usually aren't any), estimate
+TAM, and build a go-to-market blueprint.
+
+STEP 4: PACKAGING
+The result is an actionable report you can execute on — not
+theory, not fluff. Actual steps, actual numbers, actual path
+to launch.
+
+Our first report drops soon. Want early access at a discount?
+Reply to this email and we'll put you on the VIP list.
+
+— The NicheVault Team
+
+================================================================
+EMAIL #4 — PRICING & LAUNCH PREVIEW (Day 10)
+================================================================
+
+Subject: 🚀 The Vault opens next week — here's what's inside
+
+Hey {{first_name}},
+
+Big news: NicheVault launches next week.
+
+Here's exactly what you'll have access to:
+
+──────────────────────────────
+💰 PRICING TIERS
+──────────────────────────────
+
+🥉 FREE TIER
+- Monthly niche alert (1 brief per month)
+- Public sample reports
+- Access to our blog/insights
+
+🥈 PAID REPORTS  — $49–$199
+- Deep-dive niche analysis (10-20 pages)
+- Competition landscape (or lack thereof)
+- Go-to-market roadmap
+- Monetization strategy
+- SEO keyword opportunities
+
+🥇 STRATEGY BLUEPRINTS  — $499–$999
+- Everything in the paid report, PLUS:
+- Custom validation research for YOUR niche
+- Personalized GTM strategy
+- 30-min strategy call with our analyst team
+
+📅 SUBSCRIPTION  — $29/month
+- Monthly niche alerts (4+ briefs)
+- 2 paid reports included
+- 20% off additional reports
+- First look at new niches
+
+──────────────────────────────
+
+To thank you for joining the waitlist early, you'll get:
+→ 25% off your first report (any tier)
+→ Priority access to the first 5 reports
+
+Watch for the launch email next week!
+
+— The NicheVault Team
+
+================================================================
+CONFIRMATION PAGE TEXT (After email signup)
+================================================================
+
+You're in! 🎉
+
+Check your inbox for a welcome gift — a sample niche insight
+you won't find anywhere else.
+
+What happens next:
+1. Welcome email arrives immediately (with freebie)
+2. We'll send 3 more emails with behind-the-scenes content
+3. Launch week: you get first access + discount
+
+Welcome to the Vault.

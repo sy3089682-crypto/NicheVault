@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Niche Library — NicheVault</title>
+  <meta name="description" content="Browse our complete library of zero-competition market niches. Each one validated with real demand signals and actionable go-to-market potential.">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+    .back-link { display: inline-block; margin-bottom: 24px; color: #818cf8; text-decoration: none; font-weight: 600; font-size: 14px; }
+    .back-link:hover { text-decoration: underline; }
+    .header { margin-bottom: 48px; }
+    .header h1 { font-size: 36px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; }
+    .header h1 .grad { background: linear-gradient(135deg, #818cf8, #22d3ee); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .header p { font-size: 16px; color: #64748b; }
+    .filter-bar {
+      display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .filter-btn {
+      padding: 6px 18px; border-radius: 20px; font-size: 13px; font-weight: 600;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: #94a3b8; cursor: pointer;
+      transition: all 0.2s; font-family: inherit;
+    }
+    .filter-btn:hover { border-color: rgba(99,102,241,0.3); color: #e2e8f0; }
+    .filter-btn.active { background: rgba(99,102,241,0.2); border-color: #6366f1; color: #a5b4fc; }
+    .niche-list { display: flex; flex-direction: column; gap: 16px; }
+    .niche-item {
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px; padding: 28px 28px; transition: all 0.3s; position: relative;
+    }
+    .niche-item:hover { border-color: rgba(99,102,241,0.3); transform: translateX(4px); }
+    .niche-item .meta-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+    .niche-item .tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; padding: 3px 10px; border-radius: 6px; }
+    .tag-zero { background: rgba(16,185,129,0.15); color: #34d399; }
+    .tag-potential { background: rgba(99,102,241,0.15); color: #a5b4fc; }
+    .tag-low { background: rgba(250,204,21,0.15); color: #facc15; }
+    .niche-item .source { font-size: 12px; color: #475569; }
+    .niche-item h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .niche-item .desc { font-size: 14px; color: #94a3b8; line-height: 1.6; margin-bottom: 12px; max-width: 700px; }
+    .niche-item .stats { display: flex; gap: 20px; font-size: 13px; color: #64748b; flex-wrap: wrap; }
+    .niche-item .stats span strong { color: #e2e8f0; }
+    .niche-item .price-tag {
+      position: absolute; top: 28px; right: 28px;
+      font-size: 14px; font-weight: 700;
+      background: linear-gradient(135deg, #6366f1, #06b6d4);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    @media (max-width: 600px) {
+      .niche-item .price-tag { position: static; display: block; margin-bottom: 8px; }
+      .header h1 { font-size: 28px; }
+    }
+    .empty-state { text-align: center; padding: 60px 20px; color: #64748b; }
+    .cta-bar {
+      margin-top: 48px;
+      background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(6,182,212,0.05));
+      border: 1px solid rgba(99,102,241,0.1);
+      border-radius: 16px; padding: 32px; text-align: center;
+    }
+    .cta-bar h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .cta-bar p { font-size: 14px; color: #94a3b8; margin-bottom: 20px; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, #6366f1, #06b6d4); color: white; padding: 12px 28px; border-radius: 10px;
+      font-weight: 700; font-size: 15px; text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(99,102,241,0.45); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-link">← Back to NicheVault</a>
+
+    <div class="header">
+      <h1>The <span class="grad">Niche Library</span></h1>
+      <p>Every zero-competition market gap our research team has identified. Updated weekly.</p>
+    </div>
+
+    <div class="filter-bar" id="filters">
+      <button class="filter-btn active" data-filter="all">All Niches</button>
+      <button class="filter-btn" data-filter="zero">Zero Competition</button>
+      <button class="filter-btn" data-filter="potential">High Potential</button>
+      <button class="filter-btn" data-filter="low">Low Competition</button>
+    </div>
+
+    <div class="niche-list" id="nicheList">
+      <!-- === NICHE 1: Pet Bereavement === -->
+      <div class="niche-item" data-tags="zero">
+        <div class="meta-row">
+          <span class="tag tag-zero">Zero Competition</span>
+          <span class="source">Source: Forum signals + trend analysis</span>
+        </div>
+        <h3>AI Pet Bereavement Journaling</h3>
+        <div class="desc">A dedicated journaling app for processing pet loss — AI-guided prompts, memory timelines, and optional community. 78M US pet-owning households, zero dedicated tools.</div>
+        <div class="stats">
+          <span><strong>+340%</strong> search growth YoY</span>
+          <span><strong>78M</strong> pet households (US)</span>
+          <span><strong>$12/mo</strong> suggested price</span>
+        </div>
+        <span class="price-tag">Report: $49</span>
+      </div>
+
+      <!-- === NICHE 2: AI Compliance for Agencies === -->
+      <div class="niche-item" data-tags="zero">
+        <div class="meta-row">
+          <span class="tag tag-zero">Zero Competition</span>
+          <span class="source">Source: Regulatory filings + industry forums / Niche Analyst</span>
+        </div>
+        <h3>AI Compliance Audit for Small Creative Agencies</h3>
+        <div class="desc">A specialized audit service evaluating agencies' AI usage (Midjourney, ChatGPT, Copilot) and generating transparency reports for enterprise clients under emerging regulations like the EU AI Act.</div>
+        <div class="stats">
+          <span><strong>$99</strong>/audit</span>
+          <span><strong>$49/mo</strong> subscription tier</span>
+          <span><strong>EU AI Act</strong> regulatory driver</span>
+        </div>
+        <span class="price-tag">Report: $99</span>
+      </div>
+
+      <!-- === NICHE 3: CSRD Data Concierge === -->
+      <div class="niche-item" data-tags="zero">
+        <div class="meta-row">
+          <span class="tag tag-zero">Zero Competition</span>
+          <span class="source">Source: Regulatory timeline + forum signals / Niche Analyst</span>
+        </div>
+        <h3>CSRD Data Concierge for Tier 2 Suppliers</h3>
+        <div class="desc">A managed data service for SME manufacturers and logistics firms facing complex ESG data requests from large corporate clients under the EU's Corporate Sustainability Reporting Directive (CSRD).</div>
+        <div class="stats">
+          <span><strong>$499</strong>/client response</span>
+          <span><strong>$2,500/yr</strong> concierge service</span>
+          <span><strong>Scope 3</strong> reporting requirement</span>
+        </div>
+        <span class="price-tag">Report: $149</span>
+      </div>
+
+      <!-- === NICHE 4: Right to Repair Kits === -->
+      <div class="niche-item" data-tags="zero">
+        <div class="meta-row">
+          <span class="tag tag-zero">Zero Competition</span>
+          <span class="source">Source: Legislative wave + marketplace pressure / Niche Analyst</span>
+        </div>
+        <h3>Right to Repair Compliance Kits for Refurbishers</h3>
+        <div class="desc">A subscription library of documentation, safety protocols, and compliance kits for independent electronics refurbishers to legally repair and resell devices under new Right to Repair laws.</div>
+        <div class="stats">
+          <span><strong>$29–$49/mo</strong> subscription</span>
+          <span><strong>$299</strong> certification audit</span>
+          <span><strong>4+ US states</strong> with new laws</span>
+        </div>
+        <span class="price-tag">Report: $99</span>
+      </div>
+
+      <!-- === NICHE 5: Haptic Music Learning === -->
+      <div class="niche-item" data-tags="potential">
+        <div class="meta-row">
+          <span class="tag tag-potential">High Potential</span>
+          <span class="source">Source: Patent database analysis</span>
+        </div>
+        <h3>Haptic Feedback Music Learning Tools</h3>
+        <div class="desc">A vibration-enabled wearable that teaches instrument finger placement via haptic feedback. 340+ patents filed but zero commercial products exist. Massive music education market opportunity.</div>
+        <div class="stats">
+          <span><strong>340+</strong> related patents</span>
+          <span><strong>$890M</strong> music learning market</span>
+          <span><strong>Patent cliff</strong> in 12–18 months</span>
+        </div>
+        <span class="price-tag">Report: $149</span>
+      </div>
+
+      <!-- === NICHE 6: B2B Sustainability Docs === -->
+      <div class="niche-item" data-tags="zero">
+        <div class="meta-row">
+          <span class="tag tag-zero">Zero Competition</span>
+          <span class="source">Source: Regulatory analysis + price gap</span>
+        </div>
+        <h3>B2B Sustainability Documentation for SMEs</h3>
+        <div class="desc">EU supply chain regulations now require SMEs to document emissions. Existing solutions cost $10K+/year. No affordable tool exists for small businesses serving EU corporate clients.</div>
+        <div class="stats">
+          <span><strong>4.2M</strong> affected SMEs in EU</span>
+          <span><strong>$200+/mo</strong> viable price point</span>
+          <span><strong>$10K+</strong> competitor price gap</span>
+        </div>
+        <span class="price-tag">Report: $79</span>
+      </div>
+
+      <!-- === NICHE 7: Digital Nomad Insurance === -->
+      <div class="niche-item" data-tags="low">
+        <div class="meta-row">
+          <span class="tag tag-low">Low Competition</span>
+          <span class="source">Source: Community demand + industry gap</span>
+        </div>
+        <h3>Digital Nomad Insurance Comparison Platform</h3>
+        <div class="desc">40M+ digital nomads globally with zero dedicated comparison platforms for nomad-specific insurance. General comparison sites don't cover multi-country policies, remote work gear, or nomad lifestyle.</div>
+        <div class="stats">
+          <span><strong>40M+</strong> potential users</span>
+          <span><strong>$0</strong> dedicated comparators</span>
+          <span><strong>Affiliate</strong> revenue model</span>
+        </div>
+        <span class="price-tag">Report: $49</span>
+      </div>
+
+      <!-- === NICHE 8: Career Break Resume AI === -->
+      <div class="niche-item" data-tags="zero">
+        <div class="meta-row">
+          <span class="tag tag-zero">Zero Competition</span>
+          <span class="source">Source: Demographic shift + job board anomalies</span>
+        </div>
+        <h3>AI-Powered Resume Rebranding for Career Breaks</h3>
+        <div class="desc">Millions return to work after career breaks (parenting, caregiving, health). No tool exists to reframe gaps positively using AI. Currently a manual, awkward process with no dedicated solution.</div>
+        <div class="stats">
+          <span><strong>27%</strong> of workers have gaps</span>
+          <span><strong>$15/mo</strong> suggested price</span>
+          <span><strong>No tools</strong> address this</span>
+        </div>
+        <span class="price-tag">Report: $49</span>
+      </div>
+    </div>
+
+    <div class="cta-bar">
+      <h3>Want the full deep-dive on any of these niches?</h3>
+      <p>Each report includes complete competitive analysis, TAM estimation, monetization strategy, and a step-by-step launch blueprint.</p>
+      <a href="index.html#waitlist" class="btn-primary">Get Full Reports →</a>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.niche-item').forEach(item => {
+          if (filter === 'all' || item.dataset.tags === filter) {
+            item.style.display = '';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
