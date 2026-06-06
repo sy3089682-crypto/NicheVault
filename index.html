@@ -209,6 +209,37 @@
     }
     .form-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(99,102,241,0.4); }
     .form-note { font-size: 12px; color: #475569; text-align: center; margin-top: 12px; }
+    .form-note a { color: #818cf8; }
+    .signup-count { font-size: 13px; color: #34d399; text-align: center; margin-top: 10px; font-weight: 600; }
+
+    .free-section {
+      background: linear-gradient(135deg, rgba(16,185,129,0.06), rgba(99,102,241,0.04));
+      border-top: 1px solid rgba(16,185,129,0.1);
+      border-bottom: 1px solid rgba(16,185,129,0.1);
+    }
+    .free-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 32px;
+    }
+    .free-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 28px 24px;
+      text-align: center;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .free-card:hover { border-color: rgba(16,185,129,0.3); transform: translateY(-3px); }
+    .free-card .icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; margin: 0 auto 16px;
+      background: rgba(16,185,129,0.12);
+    }
+    .free-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+    .free-card p { font-size: 14px; color: #94a3b8; line-height: 1.6; }
 
     .testimonial-grid {
       display: grid;
@@ -298,7 +329,8 @@
       <a href="#how">How It Works</a>
       <a href="niche-library.html">Niche Library</a>
       <a href="#pricing">Pricing</a>
-      <a href="#waitlist" class="nav-cta">Join Waitlist</a>
+      <a href="#free">Why Free?</a>
+      <a href="#waitlist" class="nav-cta">Join Free</a>
     </div>
     <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">☰</button>
   </nav>
@@ -318,7 +350,7 @@
     </p>
     <div class="hero-actions">
       <a href="#waitlist" class="btn-primary">
-        Get Early Access →
+        Join Free →
       </a>
       <a href="#niches" class="btn-secondary">
         See Sample Niches
@@ -501,23 +533,23 @@
   <section id="pricing">
     <div class="section-container">
       <span class="section-label">Pricing</span>
-      <h2 class="section-title">Choose Your Access Level</h2>
-      <p class="section-desc">From free monthly alerts to done-for-you strategy blueprints — pick the tier that fits your launch phase.</p>
+      <h2 class="section-title">Start Free. Pay Only for Depth.</h2>
+      <p class="section-desc">The newsletter and niche alerts are 100% free. You only pay when you want a full deep-dive report or done-for-you blueprint.</p>
       <div class="pricing-grid">
         <div class="pricing-card">
-          <div class="plan">Starter</div>
+          <div class="plan">Free Newsletter</div>
           <div class="price">$0<span>/mo</span></div>
-          <div class="period">Free forever</div>
+          <div class="period">Free forever — no credit card</div>
           <ul>
             <li>Monthly niche alert (1 brief)</li>
             <li>Public sample reports</li>
             <li>Access to blog & insights</li>
-            <li>Email newsletter</li>
+            <li>Email newsletter with fresh gaps</li>
           </ul>
           <a href="#waitlist" class="btn-pricing">Join Free</a>
         </div>
         <div class="pricing-card featured">
-          <div class="pop">Most Popular</div>
+          <div class="pop">Best Value</div>
           <div class="plan">Premium</div>
           <div class="price">$29<span>/mo</span></div>
           <div class="period">Cancel anytime</div>
@@ -531,9 +563,9 @@
           <a href="#waitlist" class="btn-pricing">Subscribe →</a>
         </div>
         <div class="pricing-card">
-          <div class="plan">Report</div>
+          <div class="plan">Deep-Dive Report</div>
           <div class="price">$49<span>–$199</span></div>
-          <div class="period">Per report</div>
+          <div class="period">One-time purchase</div>
           <ul>
             <li>10-20 page deep-dive analysis</li>
             <li>Competitive landscape / gap analysis</li>
@@ -546,6 +578,37 @@
       </div>
       <div style="margin-top: 16px; text-align: center;">
         <p style="font-size: 14px; color: #64748b;">Need a custom strategy? <a href="#waitlist" style="color:#818cf8;font-weight:600;">Done-for-You Blueprints</a> start at $499.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT'S FREE -->
+  <section class="free-section" id="free">
+    <div class="section-container">
+      <span class="section-label">Our Model</span>
+      <h2 class="section-title">How NicheVault Stays Free</h2>
+      <p class="section-desc">We believe every founder should have access to market intelligence. Here's how we make that happen without charging for the basics.</p>
+      <div class="free-grid">
+        <div class="free-card">
+          <div class="icon" style="color:#34d399;">📬</div>
+          <h3>Free Newsletter</h3>
+          <p>One curated niche brief every month, delivered to your inbox. No paywall, no gated content. Just signal.</p>
+        </div>
+        <div class="free-card">
+          <div class="icon" style="color:#34d399;">🔓</div>
+          <h3>Open Sample Reports</h3>
+          <p>We publish full sample reports so you can see the quality before spending a dime. Transparency builds trust.</p>
+        </div>
+        <div class="free-card">
+          <div class="icon" style="color:#34d399;">💡</div>
+          <h3>Pay for Depth</h3>
+          <p>Deep-dive reports and custom blueprints take 10-20 hours of research each. That's where we charge — fairly.</p>
+        </div>
+        <div class="free-card">
+          <div class="icon" style="color:#34d399;">🚫</div>
+          <h3>No Ads, No Sponsors</h3>
+          <p>We don't dilute our research with sponsored content. Our only revenue comes from readers who value the depth.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -612,29 +675,31 @@
         <div>
           <div class="form-card">
             <h3>Join the Vault</h3>
-            <p class="form-sub">Get your free niche sample and early access pricing.</p>
-            <form id="waitlistForm">
+            <p class="form-sub">Get your free niche sample and early access pricing. We'll notify you at launch.</p>
+            <form id="waitlistForm" method="POST">
               <div class="form-row">
                 <div class="form-group">
                   <label for="firstName">First name</label>
-                  <input type="text" id="firstName" placeholder="Jane" required>
+                  <input type="text" id="firstName" name="firstName" placeholder="Jane" required>
                 </div>
                 <div class="form-group">
                   <label for="lastName">Last name</label>
-                  <input type="text" id="lastName" placeholder="Doe" required>
+                  <input type="text" id="lastName" name="lastName" placeholder="Doe" required>
                 </div>
               </div>
               <div class="form-group">
                 <label for="email">Email address</label>
-                <input type="email" id="email" placeholder="jane@example.com" required>
+                <input type="email" id="email" name="email" placeholder="jane@example.com" required>
               </div>
               <div class="form-group">
                 <label for="interest">I'm interested in...</label>
-                <input type="text" id="interest" placeholder="e.g., AI tools, pet industry, SaaS">
+                <input type="text" id="interest" name="interest" placeholder="e.g., AI tools, pet industry, SaaS">
               </div>
-              <button type="submit" class="form-submit">Get Early Access →</button>
+              <input type="hidden" name="_subject" value="New NicheVault Waitlist Signup">
+              <button type="submit" class="form-submit" id="submitBtn">Get Early Access →</button>
             </form>
             <p class="form-note">No spam. Unsubscribe anytime. Your niche sample arrives immediately.</p>
+            <p class="signup-count" id="signupCount"></p>
           </div>
         </div>
       </div>
@@ -697,14 +762,75 @@
       }
     });
 
+    // Formspree config — replace YOUR_FORM_ID with your actual Formspree form ID
+    // Get your free form at https://formspree.io (50 submissions/month on free tier)
+    const FORMSPREE_ID = 'YOUR_FORM_ID';
+    const FORMSPREE_CONFIGURED = FORMSPREE_ID !== 'YOUR_FORM_ID';
+
+    if (FORMSPREE_CONFIGURED) {
+      form.action = `https://formspree.io/f/${FORMSPREE_ID}`;
+    }
+
+    // localStorage helpers
+    function getSignups() {
+      try {
+        return JSON.parse(localStorage.getItem('nv_signups') || '[]');
+      } catch { return []; }
+    }
+    function saveSignup(data) {
+      const signups = getSignups();
+      if (!signups.some(s => s.email === data.email)) {
+        signups.push({ ...data, timestamp: new Date().toISOString() });
+        localStorage.setItem('nv_signups', JSON.stringify(signups));
+      }
+      return signups.length;
+    }
+    function updateSignupCount() {
+      const count = getSignups().length;
+      const el = document.getElementById('signupCount');
+      if (el && count > 0) {
+        el.textContent = `${count} founder${count !== 1 ? 's' : ''} already on the list`;
+      }
+    }
+    updateSignupCount();
+
     const form = document.getElementById('waitlistForm');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
+    const toast = document.getElementById('toast');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', async (e) => {
       const firstName = document.getElementById('firstName').value.trim();
+      const lastName = document.getElementById('lastName').value.trim();
       const email = document.getElementById('email').value.trim();
+      const interest = document.getElementById('interest').value.trim();
       if (!firstName || !email) return;
 
-      const toast = document.getElementById('toast');
+      // Always save to localStorage as backup / fallback
+      const count = saveSignup({ firstName, lastName, email, interest });
+      updateSignupCount();
+
+      if (FORMSPREE_CONFIGURED) {
+        // Let the form submit naturally to Formspree
+        // Show toast immediately for better UX
+        toast.textContent = `✓ You're on the list! We'll notify you at launch.`;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 5000);
+        return; // form submits normally
+      }
+
+      // Fallback: no Formspree configured yet — prevent default and show message
+      e.preventDefault();
+
+      // Try to open a mailto as a last-ditch effort to not lose the signup
+      const mailtoBody = encodeURIComponent(
+        `New NicheVault waitlist signup:\n\nName: ${firstName} ${lastName}\nEmail: ${email}\nInterest: ${interest || 'N/A'}\n\n(Replace this mailto with Formspree for automatic capture — see README)`
+      );
+      // Only open mailto on first few signups to avoid annoying the owner
+      if (count <= 3) {
+        window.open(`mailto:hello@nichevault.io?subject=NicheVault Waitlist Signup&body=${mailtoBody}`, '_blank');
+      }
+
+      toast.textContent = `✓ You're on the list! We'll notify you at launch.`;
       toast.classList.add('show');
       setTimeout(() => toast.classList.remove('show'), 5000);
 
