@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "purpose": "Canonical submission-messaging contract for truthful prelaunch vs live behavior across UI helper text, toast copy, accessible status regions, and API responses.",
+  "accessibility": {
+    "statusRegionRole": "status",
+    "statusRegionAriaLive": "polite"
+  },
+  "waitlist": {
+    "prelaunch": {
+      "helper": "Request early access and rollout updates. We'll follow up as prelaunch spots open.",
+      "success": "Thanks — your request was captured for prelaunch review.",
+      "duplicate": "You're already on the prelaunch list. We'll follow up as new spots open.",
+      "error": "We couldn't capture your request right now. Please try again or email hello@nichevault.io."
+    },
+    "live": {
+      "helper": "Join the live waitlist and get notified when new niches launch.",
+      "success": "You're on the list! We'll notify you when new niches launch.",
+      "duplicate": "You're already on the list.",
+      "error": "We couldn't capture your request right now. Please try again."
+    }
+  },
+  "report": {
+    "prelaunch": {
+      "helper": "Request release access for the report and we'll follow up as access opens.",
+      "success": "Thanks — your request was captured for report release follow-up.",
+      "duplicate": "Your report release request is already on file.",
+      "error": "We couldn't capture your request right now. Please try again or email hello@nichevault.io."
+    },
+    "live": {
+      "helper": "Request the report and continue to the verified checkout flow.",
+      "success": "Your request is ready. Continue to the verified checkout flow.",
+      "duplicate": "Your report request is already active.",
+      "error": "We couldn't start checkout right now. Please try again."
+    }
+  },
+  "usageRules": {
+    "useSameResolvedSuccessMessageAcross": [
+      "toast",
+      "statusRegion",
+      "apiResponse"
+    ],
+    "blockedUntilRealDeliveryOrCheckoutIsVerified": [
+      "Check your inbox for your free niche sample.",
+      "You'll receive the PDF immediately after payment."
+    ]
+  }
+}
