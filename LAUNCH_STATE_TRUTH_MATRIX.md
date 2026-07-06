@@ -1,93 +1,87 @@
 # Launch-State Truth Matrix
 
-This document turns the current launch-state trust work into a concrete, repeatable verification artifact for `NicheVault`.
+This file defines the smallest shared truth contract for `NicheVault` public conversion surfaces.
 
-It should be used together with:
-- [PRODUCTION_READINESS.md](./PRODUCTION_READINESS.md)
-- [APPLE_LEVEL_EXPERIENCE_SPEC.md](./APPLE_LEVEL_EXPERIENCE_SPEC.md)
-- [Issue #3: Fail closed when launch config is placeholder-based on waitlist and report pages](https://github.com/sy3089682-crypto/NicheVault/issues/3)
+The goal is simple: if a visitor-facing action is not genuinely live, the page must present a calm, premium **prelaunch** state instead of sounding launch-ready.
 
-The goal is simple: **the primary CTA, supporting trust copy, and success messaging must always match the real runtime state.**
+This keeps the product trustworthy while the real lead-capture and checkout paths are still being hardened.
 
 ## State model
 
-### `prelaunch`
-Use `prelaunch` when any core conversion path still depends on placeholder, manual, or demo configuration.
+Use only two public launch states:
 
-Examples:
+- `prelaunch` — any placeholder, manual, local-only, demo, or ambiguous conversion path is still active
+- `live` — the real conversion path is configured, verified, and ready for public traffic
+
+If there is any doubt, resolve to `prelaunch`.
+
+## Resolver rules
+
+Treat the page as `prelaunch` when any of the following is true:
+
 - `FORMSPREE_ID === 'YOUR_FORM_ID'`
-- signups still fall back to browser `localStorage`
-- manual `mailto:` alert flow is still active
-- PayPal business identity is still placeholder-based
-- checkout flow is not fully wired and verified end to end
+- the main waitlist flow still depends on browser `localStorage` as the primary storage path
+- the main waitlist flow still auto-opens `mailto:` for the visitor
+- the PayPal business value is placeholder-based, including `YOUR_PAYPAL_EMAIL@example.com`
+- a report purchase path behaves like a demo, manual-release, or placeholder checkout flow
+- the implementation cannot clearly prove that the real endpoint or checkout flow is available
 
-### `live`
-Use `live` only when the real submission and payment paths are configured, tested, and ready for production traffic.
+Treat the page as `live` only when the real endpoint or checkout path is configured and the primary action has been manually verified.
 
-## Truth rules
+## Shared product rules
 
-1. Never show launch-ready CTA copy when the runtime path is still placeholder-based.
-2. Never describe browser fallback or manual follow-up as if it were a production backend.
-3. Never show checkout-only trust claims unless checkout is genuinely ready.
-4. Prefer calm, explicit prelaunch framing over silent failure or overstated readiness.
-5. Keep one clear primary action per page.
+Across all conversion surfaces:
 
-## Page-by-page matrix
+1. The primary CTA label must match the resolved launch state.
+2. Dynamic follow-up copy must describe the real outcome, not the intended future outcome.
+3. The page root should expose `data-launch-state="prelaunch"` or `data-launch-state="live"`.
+4. Each page should have one polite status region: `aria-live="polite"`.
+5. Email contact can exist as a secondary option, but the primary flow must not surprise visitors by opening their mail client.
+6. Purchase-only trust language must never appear while checkout is still placeholder-based.
+7. Prelaunch mode should still feel premium: calm, minimal, readable, and honest.
 
-### `index.html`
+## Surface truth matrix
 
-| Runtime state | Primary CTA copy | Supporting copy | Success / follow-up message |
+| Surface | `prelaunch` | `live` | Never allow |
 | --- | --- | --- | --- |
-| `prelaunch` | `Request Early Access` or `Join the Prelaunch Waitlist` | Explain that NicheVault is in prelaunch and early access requests may be handled manually while launch wiring is completed. | Be explicit about whether the request was saved locally, forwarded manually, or sent to a real service. |
-| `live` | `Join Free` | Keep supporting copy focused on the user benefit, not the system internals. | Confirm that the request was submitted successfully to the live signup flow. |
+| Landing nav CTA | `Join the Prelaunch Waitlist` | `Join Free` | Launch-ready CTA copy while placeholder config is active |
+| Landing hero CTA | `Request Early Access →` | `Join Free →` | Live-sounding join CTA when the flow is local/manual only |
+| Landing support copy | Short note explaining rolling prelaunch access or manual review | Short note explaining live waitlist enrollment | Hidden state or vague copy that implies a backend path exists when it does not |
+| Landing submit behavior | On-page capture / follow-up message only, with no automatic mail-client side effect | Real configured submission flow | `window.open(mailto:...)` as the primary submit outcome |
+| Landing success message | Truthful prelaunch wording such as `Thanks — your request was captured for prelaunch review.` | Live wording such as `You're on the list! We'll notify you at launch.` | Backend-confirmation language in prelaunch mode |
+| Report primary CTA | `Request Release Access →` or `Join the Report Waitlist →` | `Get the Report for $49 →` | Placeholder checkout exposed as a purchase-ready primary action |
+| Report support / trust copy | Calm prelaunch copy such as `Prelaunch release • early-access invites are rolling out in batches.` | `Secure PayPal checkout • 30-day guarantee • Instant download` | Checkout trust claims shown while checkout is not actually live |
+| Report purchase behavior | Route to a truthful interest / release-access step instead of placeholder checkout | Route to a verified live checkout path | Submitting visitors into a placeholder PayPal merchant flow |
+| DOM hooks | `data-launch-state="prelaunch"` + one `aria-live="polite"` status region | `data-launch-state="live"` + one `aria-live="polite"` status region | Scattered state-specific string checks with no single source of truth |
 
-### `report-landing-page.html`
+## Tone and hierarchy guardrails
 
-| Runtime state | Primary CTA copy | Supporting copy | Trust claims |
-| --- | --- | --- | --- |
-| `prelaunch` | `Join the Report Waitlist` or `Request Release Access` | Explain the report is not yet available for live purchase and that the visitor will be notified when access opens. | Hide checkout-only claims such as secure payment, instant download, and refund guarantee. |
-| `live` | `Get the Report` or `Get the Report for $49` | Focus on the report value and what the buyer receives. | Show payment and delivery trust copy only after checkout is fully configured and verified. |
+### In `prelaunch`
 
-## Copy blocks that should be gated behind `live`
+- Keep the message short and composed.
+- Prefer truthful invitation language over warning language.
+- Preserve one obvious primary action.
+- Explain the state in one sentence, not a large alert block.
+- Never make the page feel broken just because it is not fully live yet.
 
-Do **not** show these while placeholder configuration is active:
-- `Join Free`
-- `Buy Now with PayPal`
-- `Get the Report for $49`
-- `Secure PayPal checkout`
-- `Instant download`
-- refund / guarantee language tied to a checkout path that is not actually live
+### In `live`
 
-## Calm prelaunch indicators
+- Restore direct action language only after the real path works.
+- Keep trust copy specific and restrained.
+- Avoid decorative marketing claims that are not backed by the actual flow.
 
-When the product is in `prelaunch`, prefer understated language such as:
-- `Prelaunch access`
-- `Early access request`
-- `Release waitlist`
-- `We’ll notify you when this goes live`
+## Manual release gate
 
-Avoid loud warning styling. The goal is honesty with composure.
+A page should not move from `prelaunch` to `live` until all of the following are true:
 
-## Verification checklist
+- the real endpoint or checkout path is configured
+- the primary CTA routes into the real flow
+- the follow-up text matches the actual outcome
+- the flow has been manually checked on desktop and mobile
+- keyboard users still encounter one clear primary action and readable status text
 
-### Waitlist surface
-- [ ] Placeholder Formspree config forces `prelaunch` copy.
-- [ ] Real Formspree config restores `live` CTA copy.
-- [ ] Success message explains the actual outcome.
-- [ ] No fallback behavior is described as production-ready submission.
+## Why this matters
 
-### Report surface
-- [ ] Placeholder PayPal config forces `prelaunch` copy.
-- [ ] Real checkout config restores purchase CTA copy.
-- [ ] Checkout-only trust claims are hidden in `prelaunch`.
-- [ ] The primary action remains visually clear on mobile and desktop.
+`NicheVault` can feel premium before launch, but it cannot feel trustworthy if its copy outruns its implementation.
 
-## Definition of done for the next implementation wave
-
-A future code change should not be considered complete until:
-- both public pages read from the same launch-state rules
-- placeholder config automatically flips the experience into a truthful prelaunch mode
-- success and follow-up messaging reflect actual behavior
-- visual hierarchy remains calm and premium in both states
-
-If there is any doubt, default to `prelaunch`.
+This matrix keeps the product aligned with a calmer Apple-level standard: clarity first, honest state communication, accessible feedback, and restrained presentation before extra polish.
