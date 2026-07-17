@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Right to Repair Blueprint — NicheVault Products</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', -apple-system, sans-serif; background: #0f172a; color: #e2e8f0; line-height: 1.7; }
+    .container { max-width: 800px; margin: 0 auto; padding: 40px 24px; }
+    a { color: #818cf8; text-decoration: none; }
+    .back-link { display: inline-block; margin-bottom: 24px; color: #818cf8; font-weight: 600; font-size: 14px; }
+    .back-link:hover { text-decoration: underline; }
+    .badge { display: inline-block; background: linear-gradient(135deg, #6366f1, #06b6d4); color: white; padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 16px; }
+    h1 { font-size: 34px; font-weight: 800; line-height: 1.25; margin-bottom: 12px; background: linear-gradient(135deg, #f1f5f9, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .subtitle { font-size: 18px; color: #94a3b8; margin-bottom: 32px; }
+    .meta { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 40px; padding: 16px 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; font-size: 14px; color: #94a3b8; }
+    .meta span strong { color: #e2e8f0; }
+    .section { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 28px 28px; margin-bottom: 20px; }
+    .section h2 { font-size: 20px; font-weight: 700; margin-bottom: 16px; color: #e2e8f0; }
+    .section h3 { font-size: 16px; font-weight: 600; margin: 20px 0 8px; color: #cbd5e1; }
+    .section p { margin-bottom: 12px; color: #94a3b8; }
+    .section ul { padding-left: 20px; margin-bottom: 12px; }
+    .section ul li { margin-bottom: 8px; color: #94a3b8; }
+    .checklist { list-style: none; padding: 0 !important; }
+    .checklist li { padding: 8px 0; display: flex; align-items: flex-start; gap: 10px; }
+    .checklist li::before { content: '✅'; font-size: 14px; }
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin: 20px 0; }
+    .stat-card { background: rgba(255,255,255,0.04); border-radius: 12px; padding: 20px; text-align: center; }
+    .stat-card .num { font-size: 28px; font-weight: 800; background: linear-gradient(135deg, #f59e0b, #f97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .stat-card .label { font-size: 13px; color: #64748b; margin-top: 4px; }
+    .cta-box { background: linear-gradient(135deg, #f59e0b, #f97316); border-radius: 16px; padding: 36px; text-align: center; color: white; margin-bottom: 20px; }
+    .cta-box h2 { color: white !important; margin-bottom: 8px; }
+    .cta-box p { color: rgba(255,255,255,0.85) !important; margin-bottom: 8px; font-size: 15px; }
+    .cta-box .price-tag { font-size: 42px; font-weight: 800; margin: 12px 0; }
+    .cta-box .price-tag span { font-size: 18px; font-weight: 500; opacity: 0.8; }
+    .cta-button { display: inline-block; background: white; color: #f59e0b; padding: 14px 40px; border-radius: 10px; font-weight: 700; font-size: 18px; margin-top: 16px; transition: transform 0.2s, box-shadow 0.2s; }
+    .cta-button:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+    .guarantee { text-align: center; font-size: 14px; color: #64748b; margin-top: 12px; }
+    .guarantee strong { color: #34d399; }
+    .testimonial { background: rgba(16,185,129,0.05); border: 1px solid rgba(16,185,129,0.15); border-radius: 12px; padding: 20px 24px; margin: 16px 0; }
+    .testimonial blockquote { font-style: italic; color: #94a3b8; font-size: 15px; }
+    .testimonial .attribution { margin-top: 8px; font-size: 13px; color: #64748b; font-style: normal; }
+    @media (max-width: 600px) { .container { padding: 24px 16px; } h1 { font-size: 26px; } .section { padding: 20px 16px; } .cta-box { padding: 24px 16px; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../../site/niche-library.html" class="back-link">← Back to Niche Library</a>
+    <div class="badge">GTM Blueprint</div>
+    <h1>Launch a $49/Month Compliance Library for Indie Electronics Refurbishers</h1>
+    <p class="subtitle">Right to Repair laws are creating a compliance gold rush. Help refurbishers stay legal — and build recurring revenue with a subscription model.</p>
+    
+    <div class="meta">
+      <span><strong>Price:</strong> $79</span>
+      <span><strong>Format:</strong> Digital Blueprint (PDF)</span>
+      <span><strong>Target:</strong> Technicians, Refurbishers, Technical Writers</span>
+      <span><strong>Revenue Model:</strong> $49/mo subscription + $299 audits</span>
+    </div>
+
+    <div class="section">
+      <h2>The Legal Wave</h2>
+      <p>Right to Repair laws passed in 4+ US states and the EU in 2023/2024. Independent refurbishers now need standardized repair documentation, safety protocols, and legal compliance materials to operate legally and stay on platforms like Back Market and Amazon Renewed.</p>
+      <p>iFixit covers DIY repair for individuals. But <strong>no one</strong> provides commercial-grade compliance documentation for businesses. This is a $49/month subscription opportunity.</p>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="num">4+</div><div class="label">US states with new laws</div></div>
+        <div class="stat-card"><div class="num">$0</div><div class="label">Commercial compliance services</div></div>
+        <div class="stat-card"><div class="num">$49/mo</div><div class="label">Subscription price point</div></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>What You'll Build</h2>
+      <p>A <strong>Subscription Compliance Library</strong> of model-specific repair kits, safety protocols, and legal disclosure templates for independent refurbishers.</p>
+      <ul>
+        <li>Step-by-step SOPs for the highest-volume refurbished models (iPhone 13/14, MacBook Air M1, Galaxy S22)</li>
+        <li>Li-ion Battery Safety & Handling Standard for commercial use</li>
+        <li>State-by-state and EU legal compliance map</li>
+        <li>Customer handover documents + legal disclosure templates</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>What's Inside the Blueprint</h2>
+      <ul class="checklist">
+        <li><strong>90-Day Launch Plan</strong> — Days 1-30 (content creation), 31-60 (beta validation), 61-90 (market entry)</li>
+        <li><strong>Customer Acquisition Strategy</strong> — Marketplace seller outreach + parts supplier partnerships + SEO</li>
+        <li><strong>Sales Templates</strong> — Back Market/Swappa seller outreach that converts</li>
+        <li><strong>Complete MVP Spec</strong> — Kit structure, safety framework, legal compliance map</li>
+        <li><strong>Pricing Strategy</strong> — $49/mo library + $299 CIR certification + $1,000+ custom enterprise kits</li>
+        <li><strong>Risk Mitigation</strong> — No-warranty disclaimers, manufacturer update resiliency</li>
+        <li><strong>Scaling Strategy</strong> — Insurance partnerships, multi-model expansion, parts wholesaler integration</li>
+        <li><strong>Resource Requirements</strong> — Skills, tools, and budget needed to launch</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Who This Is For</h2>
+      <ul>
+        <li><strong>Electronics technicians</strong> wanting to productize their knowledge</li>
+        <li><strong>Refurbishers</strong> who know the pain firsthand and want to serve their peers</li>
+        <li><strong>Technical writers</strong> looking for a niche subscription model</li>
+        <li><strong>E-waste entrepreneurs</strong> building in the circular economy</li>
+      </ul>
+    </div>
+
+    <div class="testimonial">
+      <blockquote>"I've been refurbishing phones for 5 years. This blueprint showed me exactly how to turn my repair knowledge into a recurring subscription business. The kit structure alone is worth the price."</blockquote>
+      <div class="attribution">— David L., Independent Refurbisher</div>
+    </div>
+
+    <div class="cta-box">
+      <h2>Build Your Compliance Library Today</h2>
+      <p>Complete blueprint with kit templates, safety protocols, and marketplace outreach scripts. Launch your subscription in 30 days.</p>
+      <div class="price-tag">$79 <span>one-time</span></div>
+      <a href="#" class="cta-button">Buy Now →</a>
+      <p style="margin-top: 12px; font-size: 13px; opacity: 0.75;">PDF download · Immediate access</p>
+    </div>
+    <p class="guarantee">🔒 <strong>30-Day Money-Back Guarantee</strong> — If you don't find this blueprint valuable, we'll refund every penny.</p>
+  </div>
+</body>
+</html>
