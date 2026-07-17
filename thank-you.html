@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You for Your Purchase | NicheVault</title>
+  <meta name="description" content="Your NicheVault report purchase is confirmed. Download your report and get access to exclusive niche insights.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpolygon points='16,8 26,18 16,28 6,18' fill='%236366f1'/%3E%3C/svg%3E">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'SF Pro Display', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+    }
+
+    .container { max-width: 680px; margin: 0 auto; padding: 80px 24px 40px; text-align: center; flex: 1; }
+
+    .success-icon {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(16,185,129,0.05));
+      border: 1px solid rgba(16,185,129,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px; margin: 0 auto 24px;
+    }
+
+    h1 { font-size: clamp(28px, 5vw, 40px); font-weight: 800; letter-spacing: -0.5px; margin-bottom: 12px; }
+    h1 .grad { background: linear-gradient(135deg, #818cf8, #22d3ee); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+    .sub { font-size: 18px; color: #94a3b8; max-width: 520px; margin: 0 auto 32px; line-height: 1.6; }
+
+    .download-card {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px; padding: 36px 28px; margin-bottom: 32px;
+    }
+    .download-card .file-icon { font-size: 40px; margin-bottom: 12px; }
+    .download-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+    .download-card .file-meta { font-size: 14px; color: #64748b; margin-bottom: 20px; }
+    .btn-download {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, #6366f1, #06b6d4); color: white;
+      padding: 14px 32px; border-radius: 10px; font-weight: 700; font-size: 16px;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-download:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(99,102,241,0.45); }
+    .btn-download:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    .share-row { display: flex; gap: 12px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
+    .share-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      color: #e2e8f0; padding: 10px 20px; border-radius: 8px;
+      font-weight: 600; font-size: 14px; text-decoration: none;
+      transition: background 0.2s;
+    }
+    .share-btn:hover { background: rgba(255,255,255,0.1); }
+
+    .upsell-card {
+      background: linear-gradient(135deg, rgba(99,102,241,0.06), rgba(6,182,212,0.03));
+      border: 1px solid rgba(99,102,241,0.12); border-radius: 16px;
+      padding: 28px 24px; text-align: left;
+    }
+    .upsell-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .upsell-card p { font-size: 14px; color: #94a3b8; line-height: 1.6; margin-bottom: 16px; }
+    .upsell-card form { display: flex; gap: 8px; flex-wrap: wrap; }
+    .upsell-card input {
+      flex: 1; min-width: 200px; padding: 10px 14px; border-radius: 8px;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      color: #e2e8f0; font-size: 14px; font-family: inherit;
+    }
+    .upsell-card input:focus { outline: none; border-color: #6366f1; }
+    .upsell-card button {
+      background: linear-gradient(135deg, #6366f1, #06b6d4); color: white;
+      padding: 10px 20px; border-radius: 8px; font-weight: 700; font-size: 14px;
+      border: none; cursor: pointer;
+    }
+
+    .tips { text-align: left; margin-top: 40px; }
+    .tips h3 { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
+    .tips ul { padding-left: 18px; }
+    .tips li { font-size: 14px; color: #94a3b8; margin-bottom: 8px; line-height: 1.5; }
+
+    footer {
+      padding: 24px; text-align: center; font-size: 13px; color: #475569;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    footer a { color: #64748b; }
+
+    .toast {
+      position: fixed; bottom: 24px; right: 24px;
+      background: rgba(16,185,129,0.95); backdrop-filter: blur(8px);
+      color: white; padding: 14px 22px; border-radius: 10px;
+      font-weight: 600; font-size: 14px; z-index: 100;
+      transform: translateY(100px); opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+  </style>
+  <script src="analytics.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <div class="success-icon">🎉</div>
+    <h1>Thank You for Your <span class="grad">Purchase</span></h1>
+    <p class="sub">Your order is confirmed. You're about to get the exact blueprint we'd use to launch this business ourselves.</p>
+
+    <div class="download-card">
+      <div class="file-icon">📄</div>
+      <h3>LicenseLock — Foster Parent Compliance Automator</h3>
+      <p class="file-meta">20 pages • HTML Report • Instant access</p>
+      <a href="../products/first-paid-report.html" class="btn-download" id="downloadBtn" target="_blank">
+        Open Report →
+      </a>
+      <p id="downloadNote" style="font-size:13px;color:#64748b;margin-top:12px;display:none;">
+        Report delivery is being finalized. You'll receive an email with your access link within 24 hours.
+      </p>
+    </div>
+
+    <div class="share-row">
+      <a href="https://twitter.com/intent/tweet?text=Just%20grabbed%20the%20%40NicheVault%20deep-dive%20on%20a%20%2450M%20niche%20with%20ZERO%20competition.%20Foster%20parent%20compliance%20%E2%80%94%20nobody%20is%20building%20for%20this.&url=https://sy3089682-crypto.github.io/NicheVault/" target="_blank" class="share-btn">𝕏 Share on X</a>
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://sy3089682-crypto.github.io/NicheVault/" target="_blank" class="share-btn">💼 Share on LinkedIn</a>
+      <a href="mailto:?subject=This%20niche%20research%20is%20incredible&body=Just%20bought%20a%20report%20from%20NicheVault%20on%20a%20%2450M%20foster%20care%20market%20with%20zero%20competition.%20Check%20it%20out:%20https://sy3089682-crypto.github.io/NicheVault/" class="share-btn">✉️ Email a Friend</a>
+    </div>
+
+    <div class="upsell-card">
+      <h3>🔓 Get Next Week's Niche Before Everyone Else</h3>
+      <p>Join the free NicheVault newsletter and get one zero-competition niche brief delivered to your inbox every week. No spam. Unsubscribe anytime.</p>
+      <form id="newsletterForm">
+        <input type="email" id="upsellEmail" placeholder="you@example.com" required>
+        <button type="submit">Join Free</button>
+      </form>
+    </div>
+
+    <div class="tips">
+      <h3>💡 Make the Most of Your Report</h3>
+      <ul>
+        <li><strong>Read the GTM roadmap first.</strong> The 30/60/90-day plan gives you the fastest path to revenue.</li>
+        <li><strong>Start with the community infiltration guide.</strong> Reddit and Facebook groups are your highest-ROI channels — and they're free.</li>
+        <li><strong>Check the agency partnership playbook.</strong> This is the highest-ROI distribution channel most founders will ignore.</li>
+        <li><strong>Join the newsletter.</strong> We send one validated niche every week. You'll never run out of ideas.</li>
+        <li><strong>Questions?</strong> Reply to any NicheVault email. We read every message.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 NicheVault. Questions? <a href="mailto:hello@nichevault.io">hello@nichevault.io</a></p>
+  </footer>
+
+  <div class="toast" id="toast">✓ You're on the list!</div>
+
+  <script>
+    // Download tracking
+    const downloadBtn = document.getElementById('downloadBtn');
+    const downloadNote = document.getElementById('downloadNote');
+
+    downloadBtn.addEventListener('click', (e) => {
+      // Track download in localStorage
+      const downloads = JSON.parse(localStorage.getItem('nv_downloads') || '[]');
+      downloads.push({ report: 'licenselock-foster-compliance', timestamp: new Date().toISOString() });
+      localStorage.setItem('nv_downloads', JSON.stringify(downloads));
+
+      // Show note if file isn't ready yet (404 check)
+      fetch(downloadBtn.href, { method: 'HEAD' })
+        .then(r => {
+          if (!r.ok) {
+            e.preventDefault();
+            downloadNote.style.display = 'block';
+            downloadBtn.disabled = true;
+            downloadBtn.textContent = 'Report Coming Soon';
+          }
+        })
+        .catch(() => {
+          e.preventDefault();
+          downloadNote.style.display = 'block';
+          downloadBtn.disabled = true;
+          downloadBtn.textContent = 'Report Coming Soon';
+        });
+    });
+
+    // Newsletter upsell
+    const form = document.getElementById('newsletterForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('upsellEmail').value.trim();
+      if (!email) return;
+
+      const signups = JSON.parse(localStorage.getItem('nv_signups') || '[]');
+      if (!signups.some(s => s.email === email)) {
+        signups.push({ email, source: 'thank-you-page', timestamp: new Date().toISOString() });
+        localStorage.setItem('nv_signups', JSON.stringify(signups));
+      }
+
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 4000);
+      form.reset();
+    });
+  </script>
+</body>
+</html>
